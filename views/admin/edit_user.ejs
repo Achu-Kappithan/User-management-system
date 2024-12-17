@@ -1,0 +1,61 @@
+<% include('../layouts/header') %>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="/styles/style.css">
+
+<div class="container mt-5">
+    <h1 class="mb-4">Edit User</h1>
+
+    <form action="" method="post" class="needs-validation" novalidate>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" value="<%= user.name %>" required>
+            <div class="invalid-feedback">
+                Please provide a name.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" value="<%= user.email %>" required>
+            <div class="invalid-feedback">
+                Please provide a valid email.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Mobile</label>
+            <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter Mobile" value="<%= user.phone %>" required>
+            <div class="invalid-feedback">
+                Please provide a mobile number.
+            </div>
+        </div>
+
+        <input type="hidden" name="id" value="<%= user._id %>">
+        <button type="submit" class="btn btn-primary">Update User</button>
+    </form>
+
+    <a href="/admin/dashboard" class="btn btn-secondary mt-4">Go To Dashboard</a>
+</div>
+
+<script>
+    // Bootstrap custom validation
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            var forms = document.getElementsByClassName('needs-validation');
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+
+<% include('../layouts/footer') %>
+

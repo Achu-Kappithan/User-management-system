@@ -1,0 +1,58 @@
+<% include('../layouts/header.ejs') %>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="/styles/style.css">
+
+<div class="container mt-5">
+    <h3 class="mb-4">Admin Login</h3>
+
+    <% if (typeof message !== 'undefined') { %>
+        <div class="alert alert-danger">
+            <%= message %>
+        </div>
+    <% } %>
+
+    <form action="" method="post" class="needs-validation" novalidate>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required>
+            <div class="invalid-feedback">
+                Please provide a valid email.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
+            <div class="invalid-feedback">
+                Please provide a password.
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</div>
+
+<script>
+    // Bootstrap custom validation
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            var forms = document.getElementsByClassName('needs-validation');
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+
+<% include('../layouts/footer.ejs') %>
+
+
+

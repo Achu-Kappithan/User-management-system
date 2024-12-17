@@ -1,0 +1,31 @@
+<% include('../layouts/header.ejs') %>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="/styles/style.css">
+
+<div class="container mt-5">
+    <h3 class="mb-4">Welcome Home, <%= user.name %></h3>
+
+    <div class="card mb-3" style="max-width: 540px;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="/user_images/<%= user.image %>" class="card-img" alt="<%= user.image %>">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">Profile Information</h5>
+                    <p class="card-text"><strong>Name:</strong> <%= user.name %></p>
+                    <p class="card-text"><strong>Email:</strong> <%= user.email %></p>
+                    <p class="card-text"><strong>Mobile:</strong> <%= user.phone %></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="/edit?id=<%= user._id %>" class="btn btn-warning">Edit</a>
+    <a href="/logout" class="btn btn-danger ml-2">Logout</a>
+</div>
+
+<% include('../layouts/footer.ejs') %>
+
+

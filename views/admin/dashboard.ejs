@@ -1,0 +1,53 @@
+<% include('../layouts/header.ejs') %>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="/styles/style.css">
+
+<div class="admin-dashboard-body">
+    <div class="admin-dashboard-container mt-5">
+        <h1 class="admin-dashboard-h1 mb-4">Admin Dashboard</h1>
+
+        <a href="/admin/new_user" class="btn admin-dashboard-btn-primary mb-3">Add New User</a>
+
+        <form action="/admin/dashboard" method="GET" class="d-flex justify-content-center mb-4 admin-dashboard-input-group">
+            <div class="input-group" style="max-width: 600px;">
+                <input type="text" class="form-control" placeholder="Search Username" name="search">
+                <div class="input-group-append">
+                    <button type="submit" class="btn admin-dashboard-btn-outline-primary">Search</button>
+                </div>
+            </div>
+        </form>
+
+        <table class="table admin-dashboard-table table-bordered">
+            <thead class="thead-dark admin-dashboard-thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Image</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let i = 0; i < users.length; i++) { %>
+                    <tr>
+                        <td><%= users[i].name %></td>
+                        <td><%= users[i].email %></td>
+                        <td><%= users[i].phone %></td>
+                        <td><img src="/user_images/<%= users[i].image %>" alt="<%= users[i].image %>" class="img-thumbnail" width="100px" height="100px"></td>
+                        <td>
+                            <a href="/admin/edit_user?id=<%= users[i]._id %>" class="btn btn-sm admin-dashboard-btn-warning">Edit</a>
+                            <a href="/admin/delete_user?id=<%= users[i]._id %>" class="btn btn-sm admin-dashboard-btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+
+        <a href="/admin/home" class="btn admin-dashboard-btn-secondary mt-3">Go to Home</a>
+    </div>
+</div>
+
+<% include('../layouts/footer.ejs') %>
+
+

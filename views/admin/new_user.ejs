@@ -1,0 +1,83 @@
+<% include('../layouts/header.ejs') %>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="/styles/style.css">
+
+<div class="container mt-5">
+    <h1 class="mb-4">Add New User</h1>
+
+    <% if (typeof message !== 'undefined') { %>
+        <div class="alert alert-success">
+            <%= message %>
+        </div>
+    <% } %>
+
+    <form action="/admin/addUser" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" required>
+            <div class="invalid-feedback">
+                Please provide a name.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required>
+            <div class="invalid-feedback">
+                Please provide a valid email.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter Phone" required>
+            <div class="invalid-feedback">
+                Please provide a phone number.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="image">Profile Image</label>
+            <input type="file" class="form-control-file" id="image" name="image" required>
+            <div class="invalid-feedback">
+                Please choose a profile image.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
+            <div class="invalid-feedback">
+                Please provide a password.
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add User</button>
+    </form>
+
+    <a href="/admin/dashboard" class="btn btn-secondary mt-3">Go Back</a>
+</div>
+
+<script>
+    // Bootstrap custom validation
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            var forms = document.getElementsByClassName('needs-validation');
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+
+<% include('../layouts/footer.ejs') %>
+
+

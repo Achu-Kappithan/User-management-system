@@ -1,0 +1,30 @@
+<% include('../layouts/header.ejs') %>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="/styles/style.css">
+
+<div class="container mt-5">
+    <h3 class="mb-4">Welcome Home, <%= admin.name %></h3>
+
+    <a href="/admin/dashboard" class="btn btn-primary mb-4">Dashboard</a>
+
+    <div class="card" style="width: 100%;">
+        <% if (admin && admin.image) { %>
+            <img src="/user_images/<%= admin.image %>" class="card-img-top" alt="<%= admin.image %>">
+        <% } else { %>
+            <img src="/user_images/default.png" class="card-img-top" alt="default image">
+        <% } %>
+        <div class="card-body">
+            <h5 class="card-title"><%= admin.name %></h5>
+            <p class="card-text"><strong>Email:</strong> <%= admin.email %></p>
+            <p class="card-text"><strong>Mobile:</strong> <%= admin.phone %></p>
+        </div>
+    </div>
+
+    <a href="/admin/logout" class="btn btn-danger mt-4">Logout</a>
+</div>
+
+<% include('../layouts/footer.ejs') %>
+
+
+
